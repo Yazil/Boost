@@ -44,4 +44,12 @@ public class BoostsManager {
 
         playerBoostMap.get(player).addBoost(boost);
     }
+
+    public void resetServerBoost() {
+        serverBoost = null;
+    }
+
+    public void resetPlayerBoost(Player player) {
+        this.playerBoostMap.remove(player);
+    }
 }
