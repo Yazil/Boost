@@ -28,16 +28,23 @@ public class BoostsManager {
         Boost boost = new Boost(multiplier, duration);
         if(serverBoost == null) {
             this.serverBoost = boost;
-            return;
+        } else {
+            serverBoost.addBoost(boost);
         }
 
-        serverBoost.addBoost(boost);
-        if(serverBoost.getMultiplier() <= 0)
+        //If any value is negative we delete the boost
+        if(serverBoost.getMultiplier() <= 0){
             resetServerBoost();
-        if(serverBoost.getDuration() <= 0)
+            return;
+        }
+        if(serverBoost.getDuration() <= 0){
             resetServerBoost();
-        if((serverBoost.getDuration() - serverBoost.getActiveFor()) <= 0)
+            return;
+        }
+        if((serverBoost.getDuration() - serverBoost.getActiveFor()) <= 0) {
             resetServerBoost();
+            return;
+        }
     }
 
     //Same thing as above but with a specified player
@@ -45,17 +52,23 @@ public class BoostsManager {
         Boost boost = new Boost(multiplier, duration);
         if(!playerBoostMap.containsKey(player)) {
             playerBoostMap.put(player, boost);
-            return;
+        } else {
+            playerBoostMap.get(player).addBoost(boost);
         }
 
-        playerBoostMap.get(player).addBoost(boost);
         Boost playerBoost = playerBoostMap.get(player);
-        if(playerBoost.getMultiplier() <= 0)
+        if(playerBoost.getMultiplier() <= 0) {
             resetPlayerBoost(player);
-        if(playerBoost.getDuration() <= 0)
+            return;
+        }
+        if(playerBoost.getDuration() <= 0){
             resetPlayerBoost(player);
-        if((playerBoost.getDuration() - playerBoost.getActiveFor()) <= 0)
+            return;
+        }
+        if((playerBoost.getDuration() - playerBoost.getActiveFor()) <= 0){
             resetPlayerBoost(player);
+            return;
+        }
     }
 
     public void resetServerBoost() {
