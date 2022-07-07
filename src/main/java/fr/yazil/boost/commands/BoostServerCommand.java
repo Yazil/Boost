@@ -16,7 +16,7 @@ public class BoostServerCommand extends SubCommand{
     @Override
     public void onCommand(CommandSender commandSender, Command command, String[] args) {
         if(args.length != 3){
-            commandSender.sendMessage(ChatColor.RED + "Invalid usage ! Correct usage: " + getUsage());
+            commandSender.sendMessage(ChatColor.RED + "Utilisation incorrecte: " + getUsage());
             return;
         }
 
@@ -24,7 +24,7 @@ public class BoostServerCommand extends SubCommand{
         try {
             power = Float.parseFloat(args[1]);
         } catch(NumberFormatException e){
-            commandSender.sendMessage(ChatColor.RED + "Power needs to be a valid number ! Ex: 2.5");
+            commandSender.sendMessage(ChatColor.RED + "Power doit être un nombre valide! Ex: 2.5");
             return;
         }
 
@@ -32,21 +32,21 @@ public class BoostServerCommand extends SubCommand{
         try {
             time = Integer.parseInt(args[2]);
         } catch(NumberFormatException e) {
-            commandSender.sendMessage(ChatColor.RED + "Time needs to be a valid number ! Ex: 25");
+            commandSender.sendMessage(ChatColor.RED + "Time doit être un entier valide! Ex: 25");
             return;
         }
 
         BoostsManager boostsManager = BoostsManager.getInstance();
         boostsManager.boostServer(power, time);
         if(boostsManager.getServerBoost() != null) {
-            commandSender.sendMessage(ChatColor.GREEN + "The server's boost is now: x"
+            commandSender.sendMessage(ChatColor.GREEN + "Le boost du serveur est maintenant de x"
                     + boostsManager.getServerBoost().getMultiplier()
-                    + " and remains for another: "
+                    + " et expire dans : "
                     + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
                     + "min"
             );
         } else {
-            commandSender.sendMessage(ChatColor.RED + "The server's boost was deleted because the multiplier or the duration was negative.");
+            commandSender.sendMessage(ChatColor.RED + "Le boost du serveur a été supprimé car le multiplicateur ou sa durée était négative.");
         }
 
     }

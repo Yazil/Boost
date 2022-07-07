@@ -18,18 +18,18 @@ public class BoostResetCommand extends SubCommand{
         if(args.length == 1) {
             //Reset the server's boost
             BoostsManager.getInstance().resetServerBoost();
-            commandSender.sendMessage(ChatColor.GREEN + "Resetting the server's boost !");
+            commandSender.sendMessage(ChatColor.GREEN + "Suppression du boost du serveur !");
         } else if (args.length == 2) {
             //Reset a player's boost
             Player player = Bukkit.getPlayer(args[1]);
             if(player == null) {
-                commandSender.sendMessage(ChatColor.RED + "Player is whether not online or invalid.");
+                commandSender.sendMessage(ChatColor.RED + "Ce joueur n'est pas en ligne ou n'existe pas.");
                 return;
             }
             BoostsManager.getInstance().resetPlayerBoost(player);
-            commandSender.sendMessage(ChatColor.GREEN + "Resetting " + player.getName() +"'s boost !");
+            commandSender.sendMessage(ChatColor.GREEN + "Suppression du boost de " + player.getName() + "!");
         } else {
-            commandSender.sendMessage(ChatColor.RED + "Invalid usage ! Correct usage: " + getUsage());
+            commandSender.sendMessage(ChatColor.RED + "Utilisation incorrecte: " + getUsage());
         }
     }
 

@@ -28,7 +28,7 @@ public class BoostExecutor implements CommandExecutor {
                 return true;
             }
 
-        commandSender.sendMessage(ChatColor.GRAY + "╔════Commands List════╗");
+        commandSender.sendMessage(ChatColor.GRAY + "╔════Liste des commandes════╗");
         subCommands.values().forEach( subCommand -> commandSender.sendMessage("- " + subCommand.getUsage()));
 
         return true;
