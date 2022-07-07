@@ -32,6 +32,12 @@ public class BoostsManager {
         }
 
         serverBoost.addBoost(boost);
+        if(serverBoost.getMultiplier() <= 0)
+            resetServerBoost();
+        if(serverBoost.getDuration() <= 0)
+            resetServerBoost();
+        if((serverBoost.getDuration() - serverBoost.getActiveFor()) <= 0)
+            resetServerBoost();
     }
 
     //Same thing as above but with a specified player
@@ -43,6 +49,13 @@ public class BoostsManager {
         }
 
         playerBoostMap.get(player).addBoost(boost);
+        Boost playerBoost = playerBoostMap.get(player);
+        if(playerBoost.getMultiplier() <= 0)
+            resetPlayerBoost(player);
+        if(playerBoost.getDuration() <= 0)
+            resetPlayerBoost(player);
+        if((playerBoost.getDuration() - playerBoost.getActiveFor()) <= 0)
+            resetPlayerBoost(player);
     }
 
     public void resetServerBoost() {
