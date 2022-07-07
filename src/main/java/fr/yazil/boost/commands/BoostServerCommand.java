@@ -15,7 +15,7 @@ public class BoostServerCommand extends SubCommand{
 
     @Override
     public void onCommand(CommandSender commandSender, Command command, String[] args) {
-        if(args.length != 3{
+        if(args.length != 3){
             commandSender.sendMessage(ChatColor.RED + "Invalid usage ! Correct usage: " + getUsage());
             return;
         }
@@ -44,7 +44,6 @@ public class BoostServerCommand extends SubCommand{
                 + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
                 + "min"
         );
-    }
     }
 
 }
