@@ -38,12 +38,17 @@ public class BoostServerCommand extends SubCommand{
 
         BoostsManager boostsManager = BoostsManager.getInstance();
         boostsManager.boostServer(power, time);
-        commandSender.sendMessage(ChatColor.GREEN + "The server's boost is now: x"
-                + boostsManager.getServerBoost().getMultiplier()
-                + " and remains for another: "
-                + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
-                + "min"
-        );
+        if(boostsManager.getServerBoost() != null) {
+            commandSender.sendMessage(ChatColor.GREEN + "The server's boost is now: x"
+                    + boostsManager.getServerBoost().getMultiplier()
+                    + " and remains for another: "
+                    + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
+                    + "min"
+            );
+        } else {
+            commandSender.sendMessage(ChatColor.RED + "The server's boost was deleted because the multiplier or the duration was negative.");
+        }
+
     }
 
 }

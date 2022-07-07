@@ -44,11 +44,16 @@ public class BoostPlayerCommand extends SubCommand{
 
         BoostsManager boostsManager = BoostsManager.getInstance();
         boostsManager.boostPlayer(player, power, time);
-        commandSender.sendMessage(ChatColor.GREEN + player.getName() + "'s boost is now: x"
-                + boostsManager.getPlayerBoostMap().get(player).getMultiplier()
-                + " and remains for another: "
-                + (boostsManager.getPlayerBoostMap().get(player).getDuration() - boostsManager.getPlayerBoostMap().get(player).getActiveFor())
-                + "min"
-        );
+        if(boostsManager.getPlayerBoostMap().containsKey(player)){
+            commandSender.sendMessage(ChatColor.GREEN + player.getName() + "'s boost is now: x"
+                    + boostsManager.getPlayerBoostMap().get(player).getMultiplier()
+                    + " and remains for another: "
+                    + (boostsManager.getPlayerBoostMap().get(player).getDuration() - boostsManager.getPlayerBoostMap().get(player).getActiveFor())
+                    + "min"
+            );
+        } else {
+            commandSender.sendMessage(ChatColor.RED + "The player's boost was deleted because the multiplier or the duration was negative.");
+        }
+
     }
 }
