@@ -51,6 +51,10 @@ public class BoostPlayerCommand extends SubCommand{
                     + (boostsManager.getPlayerBoostMap().get(player).getDuration() - boostsManager.getPlayerBoostMap().get(player).getActiveFor())
                     + "min"
             );
+            player.sendMessage("Votre boost maintenant de x" +
+                    boostsManager.getPlayerBoostMap().get(player).getMultiplier() + " et expire dans " +
+                    (boostsManager.getPlayerBoostMap().get(player).getDuration() - boostsManager.getPlayerBoostMap().get(player).getActiveFor()) +
+                    "min.");
         } else {
             commandSender.sendMessage(ChatColor.RED + "Le boost du joueur a été supprimé car le multiplicateur ou sa durée était négative.");
         }

@@ -28,6 +28,7 @@ public class BoostResetCommand extends SubCommand{
             }
             BoostsManager.getInstance().resetPlayerBoost(player);
             commandSender.sendMessage(ChatColor.GREEN + "Suppression du boost de " + player.getName() + "!");
+            player.sendMessage(ChatColor.RED + "Votre boost a été supprimé !");
         } else {
             commandSender.sendMessage(ChatColor.RED + "Utilisation incorrecte: " + getUsage());
         }

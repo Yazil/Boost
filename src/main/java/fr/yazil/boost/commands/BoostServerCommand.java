@@ -45,6 +45,9 @@ public class BoostServerCommand extends SubCommand{
                     + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
                     + "min"
             );
+            Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "Le boost du serveur est maintenant de x" +
+                    boostsManager.getServerBoost().getMultiplier() +
+                    " et expire dans " + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor()) + "min.");
         } else {
             commandSender.sendMessage(ChatColor.RED + "Le boost du serveur a été supprimé car le multiplicateur ou sa durée était négative.");
         }
