@@ -1,0 +1,7 @@
+name: Boost
+description: Manages and displays the experience multiplier both server wide and on a per player basis
+version: 1.0
+main: fr.yazil.boost.BoostPlugin
+commands:
+  boost:
+    description: Allow to manage the experience boost of players or of the server
