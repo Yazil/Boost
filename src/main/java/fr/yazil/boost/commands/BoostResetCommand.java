@@ -1,6 +1,7 @@
 package fr.yazil.boost.commands;
 
 import fr.yazil.boost.boosts.BoostsManager;
+import fr.yazil.boost.utils.BossBarUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -19,6 +20,9 @@ public class BoostResetCommand extends SubCommand{
             //Reset the server's boost
             BoostsManager.getInstance().resetServerBoost();
             commandSender.sendMessage(ChatColor.GREEN + "Suppression du boost du serveur !");
+            for(Player p : Bukkit.getOnlinePlayers()) {
+                BossBarUtils.getInstance().removeBar(p);
+            }
         } else if (args.length == 2) {
             //Reset a player's boost
             Player player = Bukkit.getPlayer(args[1]);
