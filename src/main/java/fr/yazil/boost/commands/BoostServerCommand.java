@@ -1,6 +1,7 @@
 package fr.yazil.boost.commands;
 
 import fr.yazil.boost.boosts.BoostsManager;
+import fr.yazil.boost.utils.BossBarUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -39,7 +40,7 @@ public class BoostServerCommand extends SubCommand{
         BoostsManager boostsManager = BoostsManager.getInstance();
         boostsManager.boostServer(power, time);
         if(boostsManager.getServerBoost() != null) {
-            commandSender.sendMessage(ChatColor.GREEN + "Le boost du serveur est maintenant de x"
+            commandSender.sendMessage(ChatColor.GREEN + "Vous avez défini le boost du serveur: x"
                     + boostsManager.getServerBoost().getMultiplier()
                     + " et expire dans : "
                     + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor())
@@ -48,6 +49,11 @@ public class BoostServerCommand extends SubCommand{
             Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "Le boost du serveur est maintenant de x" +
                     boostsManager.getServerBoost().getMultiplier() +
                     " et expire dans " + (boostsManager.getServerBoost().getDuration() - boostsManager.getServerBoost().getActiveFor()) + "min.");
+            for(Player p : Bukkit.getOnlinePlayers()) {
+                BossBarUtils.getInstance().setBossBar(p,
+                        "Boost serveur - x" + boostsManager.getServerBoost().getMultiplier() + " - Exp: " + (boostsManager.getServerBoost().getDuration()- boostsManager.getServerBoost().getActiveFor()) + "min",
+                        Math.round((1f-((float)boostsManager.getServerBoost().getActiveFor()/(float)boostsManager.getServerBoost().getDuration()))*100f));
+            }
         } else {
             commandSender.sendMessage(ChatColor.RED + "Le boost du serveur a été supprimé car le multiplicateur ou sa durée était négative.");
         }
