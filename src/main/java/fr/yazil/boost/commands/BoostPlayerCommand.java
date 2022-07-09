@@ -45,7 +45,7 @@ public class BoostPlayerCommand extends SubCommand{
         BoostsManager boostsManager = BoostsManager.getInstance();
         boostsManager.boostPlayer(player, power, time);
         if(boostsManager.getPlayerBoostMap().containsKey(player)){
-            commandSender.sendMessage(ChatColor.GREEN + "Le boost de " + player.getName() + "est maintenant de: x"
+            commandSender.sendMessage(ChatColor.GREEN + "Le boost de " + player.getName() + " est maintenant de: x"
                     + boostsManager.getPlayerBoostMap().get(player).getMultiplier()
                     + " et expire dans: "
                     + (boostsManager.getPlayerBoostMap().get(player).getDuration() - boostsManager.getPlayerBoostMap().get(player).getActiveFor())
@@ -57,6 +57,7 @@ public class BoostPlayerCommand extends SubCommand{
                     "min.");
         } else {
             commandSender.sendMessage(ChatColor.RED + "Le boost du joueur a été supprimé car le multiplicateur ou sa durée était négative.");
+            player.sendMessage(ChatColor.RED + "Votre boost a été supprimé !");
         }
 
     }
